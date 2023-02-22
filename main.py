@@ -1,6 +1,7 @@
 import asyncio
 import platform
 import logging
+from datetime import date, timedelta
 from pprint import pprint
 
 import aiohttp
@@ -41,12 +42,17 @@ def exchange_on_date():
     return res
 
 if __name__ == "__main__":
-    dates = ['21.02.2023','22.02.2023']
+
+    NUM_DAYS = 2
+    dates = []
+    for i in range(1,NUM_DAYS + 1):
+        dates.append((date.today() - timedelta(i)).strftime('%d.%m.%Y'))
+
     if platform.system() == 'Windows':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     for date in dates:
         r = asyncio.run(get_exchange(date))
         exc = exchange_on_date()
-        print(exc)
-    # pprint(r)
+        pprint(exc)
+
 
