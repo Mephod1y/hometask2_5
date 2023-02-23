@@ -1,7 +1,8 @@
 import asyncio
-import platform
-import logging
 from datetime import date, timedelta
+import logging
+import sys
+import platform
 from pprint import pprint
 
 import aiohttp
@@ -43,7 +44,7 @@ def exchange_on_date():
 
 if __name__ == "__main__":
 
-    NUM_DAYS = 2
+    NUM_DAYS = sys.argv[1]
     dates = []
     for i in range(1,NUM_DAYS + 1):
         dates.append((date.today() - timedelta(i)).strftime('%d.%m.%Y'))
@@ -54,5 +55,3 @@ if __name__ == "__main__":
         r = asyncio.run(get_exchange(date))
         exc = exchange_on_date()
         pprint(exc)
-
-
