@@ -44,7 +44,7 @@ def exchange_on_date():
 
 if __name__ == "__main__":
 
-    NUM_DAYS = sys.argv[1]
+    NUM_DAYS = int(sys.argv[1])
     dates = []
     for i in range(1,NUM_DAYS + 1):
         dates.append((date.today() - timedelta(i)).strftime('%d.%m.%Y'))
